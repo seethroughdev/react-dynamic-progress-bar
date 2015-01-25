@@ -25,5 +25,14 @@
   "bugs": {
     "url": "https://github.com/seethroughtrees/react-dynamic-progress-bar/issues"
   },
-  "homepage": "https://github.com/seethroughtrees/react-dynamic-progress-bar"
+  "homepage": "https://github.com/seethroughtrees/react-dynamic-progress-bar",
+  "devDependencies": {
+    "gulp": "^3.8.10",
+    "gulp-6to5": "^2.0.2",
+    "gulp-load-plugins": "^0.8.0",
+    "gulp-notify": "^2.1.0",
+    "gulp-rename": "^1.2.0",
+    "gulp-uglify": "^1.1.0",
+    "react": "^0.12.2"
+  }
 }
