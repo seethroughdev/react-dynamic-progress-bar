@@ -18,8 +18,8 @@ var handleError = function handleError(err) {
 gulp.task('build', function() {
   return gulp.src('./src/react-dynamic-progress-bar.js')
     .pipe(to5({
-        modules: 'umd'
-      }))
+      modules: 'umd'
+    }))
     .on('error', handleError)
     .pipe($.rename('react-dynamic-progress-bar.js'))
     .pipe(gulp.dest('./'))
@@ -28,6 +28,30 @@ gulp.task('build', function() {
     .pipe(gulp.dest('./'));
 });
 
+gulp.task('test:js', function() {
+  return gulp.src('__tests__')
+    .pipe($.jest({
+      scriptPreprocessor: "./preprocessor.js",
+      unmockedModulePathPatterns: [
+          "node_modules/react"
+      ],
+      testPathIgnorePatterns: [
+        "node_modules",
+        "spec/support"
+      ],
+      moduleFileExtensions: [
+        "js",
+        "json",
+        "react"
+      ]
+    }))
+    .on('error', handleError);
+});
+
 gulp.task('watch', function() {
   gulp.watch('./src/**.*', ['build']);
+});
+
+gulp.task('test', function() {
+  gulp.watch('./react-dynamic-progress-bar.js', ['test:js']);
 });

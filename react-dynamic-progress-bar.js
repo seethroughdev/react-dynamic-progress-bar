@@ -35,8 +35,6 @@
   };
 
   (function () {
-    "use strict";
-
     var vendors = ["webkit", "moz"];
     for (var i = 0; i < vendors.length && !window.requestAnimationFrame; ++i) {
       var vp = vendors[i];

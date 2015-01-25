@@ -23,7 +23,6 @@ if (!Date.now)
     Date.now = function() { return new Date().getTime(); };
 
 (function() {
-    'use strict';
 
     var vendors = ['webkit', 'moz'];
     for (var i = 0; i < vendors.length && !window.requestAnimationFrame; ++i) {
