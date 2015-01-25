@@ -4,7 +4,7 @@
   "description": "A dynamic progress bar component for React.js",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,16 @@
   "bugs": {
     "url": "https://github.com/seethroughtrees/react-dynamic-progress-bar/issues"
   },
+  "dependencies": {
+    "react": "*",
+    "react-tools": "*"
+  },
+  "jest": {
+    "scriptPreprocessor": "<rootDir>/preprocessor.js",
+    "unmockedModulePathPatterns": [
+      "<rootDir>/node_modules/react"
+    ]
+  },
   "homepage": "https://github.com/seethroughtrees/react-dynamic-progress-bar",
   "devDependencies": {
     "gulp": "^3.8.10",
@@ -33,6 +43,8 @@
     "gulp-notify": "^2.1.0",
     "gulp-rename": "^1.2.0",
     "gulp-uglify": "^1.1.0",
-    "react": "^0.12.2"
+    "jest-cli": "^0.2.1",
+    "react": "^0.12.2",
+    "react-tools": "^0.12.2"
   }
 }
