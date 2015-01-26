@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <title>***YOUR-TITLE-HERE***</title>
+
+  <!-- Styles -->
+  <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/screen.css">
+  <link rel="stylesheet" href="css/main.css">
+
+  <!-- Canonical Meta -->
+  <link rel="canonical" href="**YOUR-URL-HERE***">
+
+  <!-- Viewport Meta-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO Meta -->
+  <meta name="description" content="***YOUR-CONTENT-HERE-***">
+  <meta name="keywords" content="***YOUR-CONTENT-HERE-***">
+  <meta name="robots" content="INDEX,FOLLOW">
+
+  <!-- Favicons -->
+  <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/apple-touch-icon-precomposed.png">
+  <meta name="apple-mobile-web-app-title" content="***YOUR-SITE'S-NAME-HERE-***">
+
+  <!-- Facebook -->
+  <meta property="og:title" content="***YOUR-TITLE-HERE-***">
+  <meta property="og:site_name" content="***YOUR-SITE'S-NAME-HERE-***">
+  <meta property=" og:url" content="***YOUR-URL-HERE-***">
+  <meta property="og:description" content="***YOUR-CONTENT-HERE-***">
+
+  <!-- Windows 8 Pin app to start screen -->
+  <meta name="msapplication-TileColor" content="****BRAND-COLOR-HERE***">
+  <meta name="msapplication-TileImage" content="***YOUR-URL-HERE-***/apple-touch-icon-precomposed.png">
+
+  </head>
+
+
+  <body>
+
+    <div class="site">
+
+      <header class="site-header" role="banner">
+        <div class="container">
+          <a class="branding" href="/">
+            <h1 class="branding__wordmark">React State Progress Bar</h1>
+          </a>
+          <nav class="site-nav">
+            <a href="#">Demo</a>
+            <a href="#">Download</a>
+            <a href="#">Use</a>
+            <a href="#">Github</a>
+          </nav>
+        </div>
+      </header>
+
+      <main class="site-main" role="main">
+
+        <section class="block container">
+          <main class="hero">
+            <!-- <h2>Demo</h2> -->
+            <h2>Add a loading timer to your ajax calls, page transitions or anything you want.</h2>
+            <p><a class="btn" href="#">Toggle State</a></p>
+            <code>{this.state.bar === false}</code>
+            <p><code>&lt;ProgressBar bar={this.state.bar} /&gt;</code></p>
+          </main>
+        </section>
+
+        <section class="block container">
+          <h3>This one is a little different than the other loading bars.</h3>
+          <p>Most require you to input a value so the loading bar can calculate the width.  But with ajax calls and other things, we don't always know how long it's going to take.</p>
+          <p>React State Progress Bar only requires a boolean state, either you start the bar, and its active.  Or you cancel the bar and it finishes up.  bar = true, or bar = false.</p>
+        </section>
+
+
+        <section class="block container">
+          <h3>Download</h3>
+          <p>React State Progress Bar is browserify compatible, and uses UMD.  So its available for commonJS, AMD or in the browser.  SystemJS version will be coming soon.</p>
+          <h4>NPM</h4>
+          <code>npm install react-state-progress-bar -D</code>
+          <h4>Bower</h4>
+          <code>bower install react-state-pogress-bar -S</code>
+          <h4>Browser/Global</h4>
+          <a href="#" class="btn">Download</a>
+        </section>
+
+
+        <section class="block container">
+          <p><em>Skyline is intended for IE9+ with optional legacy support in the works</em></p>
+        </section>
+
+      </main>
+
+      <footer class="site-footer">
+        <div class="container">
+          <a class="branding" href="/">React State Progress Bar Here</a>
+          <nav class="site-nav">
+            <a href="#">Demo</a>
+            <a href="#">Download</a>
+            <a href="#">Use</a>
+            <a href="#">Github</a>
+          </nav>
+        </div>
+      </footer>
+
+    </div><!--/.site-->
+
+  </body>
+
+
+</html>

@@ -48,8 +48,35 @@ gulp.task('test:js', function() {
     .on('error', handleError);
 });
 
-gulp.task('watch', function() {
-  gulp.watch('./src/**.*', ['build']);
+gulp.task('demo:css', function() {
+  return gulp.src(['demo/css/screen.scss', 'demo/styles/main.scss'])
+    .pipe($.sass({
+        outputStyle: 'compressed'
+      }))
+    .on('error', handleError)
+    .pipe(gulp.dest('./dist/css/'))
+  });
+
+gulp.task('demo:html', function() {
+  return gulp.src('demo/**.html')
+    .pipe($.minifyHtml())
+    .pipe(gulp.dest('./dist/'));
+  });
+
+gulp.task('demo:js', function() {
+  return gulp.src('demo/js/**.*')
+    .pipe(to5({
+      modules: 'umd'
+    }))
+    .on('error', handleError)
+    .pipe(gulp.dest('./dist/js/'))
+  });
+
+gulp.task('demo', ['demo:html', 'demo:js', 'demo:css']);
+
+gulp.task('watch', ['demo', 'build'], function() {
+  gulp.watch(['./src/**.*'], ['build']);
+  gulp.watch(['./demo/**'], ['demo']);
 });
 
 gulp.task('test', function() {

@@ -1,0 +1,20 @@
+@import 'normalize';
+@import 'base';
+
+body {
+  max-width: 100%;
+}
+
+.site-main {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hero {
+  text-align: center;
+}
+
+h2 {
+  font-size: 22px;
+  font-weight: 200;
+}

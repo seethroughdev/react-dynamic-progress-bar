@@ -75,16 +75,16 @@ var dynamicProgressBar = React.createClass({
   resetValue() {
     this.setState(this.resetStateValues);
     this.styleTransform(true);
-    this.props.status = false;
+    this.props.bar = false;
     this.checkValue();
   },
 
   checkValue() {
 
-    if (this.props.status === true) {
+    if (this.props.bar === true) {
       return this.finishValue();
 
-    } else if (this.props.status === false) {
+    } else if (this.props.bar === false) {
       this.incrementStatus(this.state.value);
       return window.requestAnimationFrame(this.checkValue);
     }
@@ -206,9 +206,9 @@ var dynamicProgressBar = React.createClass({
   // only check the value if the status prop has changed
   componentWillReceiveProps(nextprops) {
 
-    if (this.props.status === true && nextprops.status === false) {
+    if (this.props.bar === true && nextprops.bar === false) {
       this.resetValue();
-    } else if (typeof nextprops.status === 'boolean') {
+    } else if (typeof nextprops.bar === 'boolean') {
       this.checkValue();
     }
 
@@ -220,7 +220,7 @@ var dynamicProgressBar = React.createClass({
     this.style = this.setStyle(this.props.barStyle);
 
     // if status is false by default, run right away
-    if (typeof this.props.status === 'boolean') {
+    if (typeof this.props.bar === 'boolean') {
       this.checkValue();
     }
 
