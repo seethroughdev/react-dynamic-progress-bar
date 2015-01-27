@@ -1,3 +1,5 @@
+$blue: #50AE75;
+
 @import 'normalize';
 @import 'base';
 
@@ -10,11 +12,38 @@ body {
   margin: 0 auto;
 }
 
-.hero {
-  text-align: center;
+.site-nav a {
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
-h2 {
-  font-size: 22px;
-  font-weight: 200;
+.hero {
+  text-align: center;
+  h2 {
+    font-size: 22px;
+    font-weight: 200;
+    strong {
+      color: $blue;
+    }
+  }
+  .btn {
+    background: $blue;
+  }
+}
+
+hr {
+  border-color: rgba(193,199,208,0.3);
+  width: 65%;
+  margin: 3em auto;
+}
+
+a {
+  cursor: pointer;
+  color: $blue;
+  text-decoration: underline;
+  h1 {
+    color: #515554
+  }
 }
