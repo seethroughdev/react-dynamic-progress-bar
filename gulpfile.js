@@ -2,6 +2,11 @@
 
 var gulp = require('gulp'),
   $ = require('gulp-load-plugins')(),
+  watchify    = require('watchify'),
+  browserify  = require('browserify'),
+  reactify    = require('reactify'),
+  buffer      = require('vinyl-buffer'),
+  source      = require('vinyl-source-stream'),
   to5 = require('gulp-6to5');
 
 var handleError = function handleError(err) {
@@ -15,18 +20,7 @@ var handleError = function handleError(err) {
   this.emit('end');
 };
 
-gulp.task('build', function() {
-  return gulp.src('./src/react-dynamic-progress-bar.js')
-    .pipe(to5({
-      modules: 'umd'
-    }))
-    .on('error', handleError)
-    .pipe($.rename('react-dynamic-progress-bar.js'))
-    .pipe(gulp.dest('./'))
-    .pipe($.uglify())
-    .pipe($.rename('react-dynamic-progress-bar.min.js'))
-    .pipe(gulp.dest('./'));
-});
+/*==========  JAVASCRIPT  ==========*/
 
 gulp.task('test:js', function() {
   return gulp.src('__tests__')
@@ -64,13 +58,65 @@ gulp.task('demo:html', function() {
   });
 
 gulp.task('demo:js', function() {
-  return gulp.src('demo/js/**.*')
+  return bundle(mainBundle, 'bundle.js');
+});
+
+
+var production = process.env.NODE_ENV === 'production';
+
+/*==========  MainJS Handling  ==========*/
+
+var mainBundle = watchify(browserify({
+    basedir: __dirname,
+    debug: !production,
+    entries: './demo/js/index.js',
+    cache: {},
+    packageCache: {},
+    fullPaths: true,
+    extensions: ['.jsx']
+  }, watchify.args));
+
+mainBundle.transform(reactify);
+mainBundle.on('update', function() {
+  return bundle(mainBundle, 'bundle.js');
+});
+
+/*==========  BUNDLE FUNCTION  ==========*/
+
+function bundle(src, filename) {
+  var startTime = Date.now();
+  return src.bundle()
+    .on('error', handleError)
+    .pipe(source(filename))
+      .pipe(buffer())
+      .pipe($.sourcemaps.init({loadMaps: true}))
+      .pipe($.uglify())
+      .pipe($.sourcemaps.write('./'))
+    .pipe(gulp.dest('./dist/js/'))
+    .pipe($.size({
+      showFiles: true
+    }));
+}
+
+
+/*==========  BUILD  ==========*/
+
+
+gulp.task('build', function() {
+  return gulp.src('./src/react-dynamic-progress-bar.js')
     .pipe(to5({
       modules: 'umd'
     }))
     .on('error', handleError)
-    .pipe(gulp.dest('./dist/js/'))
-  });
+    .pipe($.rename('react-dynamic-progress-bar.js'))
+    .pipe(gulp.dest('./'))
+    .pipe($.uglify())
+    .pipe($.rename('react-dynamic-progress-bar.min.js'))
+    .pipe(gulp.dest('./'));
+});
+
+/*==========  TASKS  ==========*/
+
 
 gulp.task('demo', ['demo:html', 'demo:js', 'demo:css']);
 
