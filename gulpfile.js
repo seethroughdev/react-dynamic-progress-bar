@@ -104,15 +104,15 @@ function bundle(src, filename) {
 
 
 gulp.task('build', function() {
-  return gulp.src('./src/react-dynamic-progress-bar.js')
+  return gulp.src('./src/react-state-progress-bar.js')
     .pipe(to5({
       modules: 'common'
     }))
     .on('error', handleError)
-    .pipe($.rename('react-dynamic-progress-bar.js'))
+    .pipe($.rename('react-state-progress-bar.js'))
     .pipe(gulp.dest('./'))
     .pipe($.uglify())
-    .pipe($.rename('react-dynamic-progress-bar.min.js'))
+    .pipe($.rename('react-state-progress-bar.min.js'))
     .pipe(gulp.dest('./'));
 });
 
@@ -127,5 +127,5 @@ gulp.task('watch', ['demo', 'build'], function() {
 });
 
 gulp.task('test', function() {
-  gulp.watch('./react-dynamic-progress-bar.js', ['test:js']);
+  gulp.watch('./react-state-progress-bar.js', ['test:js']);
 });

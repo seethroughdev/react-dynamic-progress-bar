@@ -1,14 +1,14 @@
 {
-  "name": "react-dynamic-progress-bar",
+  "name": "react-state-progress-bar",
   "version": "1.1.0",
   "description": "A dynamic progress bar component for React.js",
-  "main": "react-dynamic-progress-bar.js",
+  "main": "react-state-progress-bar.js",
   "scripts": {
     "test": "jest"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/seethroughtrees/react-dynamic-progress-bar.git"
+    "url": "https://github.com/seethroughtrees/react-state-progress-bar.git"
   },
   "keywords": [
     "reactjs",
@@ -23,7 +23,7 @@
   "author": "seethroughtrees",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/seethroughtrees/react-dynamic-progress-bar/issues"
+    "url": "https://github.com/seethroughtrees/react-state-progress-bar/issues"
   },
   "dependencies": {
     "react": "*"
@@ -34,7 +34,7 @@
       "<rootDir>/node_modules/react"
     ]
   },
-  "homepage": "https://github.com/seethroughtrees/react-dynamic-progress-bar",
+  "homepage": "https://github.com/seethroughtrees/react-state-progress-bar",
   "devDependencies": {
     "gulp": "^3.8.10",
     "gulp-6to5": "^3.0.0",

@@ -1,7 +1,7 @@
-jest.dontMock('../react-dynamic-progress-bar');
+jest.dontMock('../react-state-progress-bar');
 
-var React = require('react/addons'),
-    ProgressBar = require('../react-dynamic-progress-bar'),
+var React = require('react'),
+    ProgressBar = require('../react-state-progress-bar'),
     TestUtils = React.addons.TestUtils;
 
 describe("dynamic progress bar", function() {

@@ -11,7 +11,8 @@
 
 'use strict';
 
-var React = window.React || require('react');
+var React = window.React || require('react'),
+    RP    = React.PropTypes;
 
 /*======================================================
 =            1. requestAnimationFrame polyfill         =
@@ -55,38 +56,32 @@ var dynamicProgressBar = React.createClass({
 
   resetStateValues: {
     value: 0,
-    complete: false,
-    status: null
+    complete: false
   },
 
   getInitialState() {
     return this.resetStateValues;
   },
 
-  getDefaultProps() {
-    return {
-      status: null
-    };
+  propTypes: {
+    basssr: RP.bool.isRequired
   },
-
 
   /*==========  Bar State  ==========*/
 
   resetValue() {
     this.setState(this.resetStateValues);
     this.styleTransform(true);
-    this.props.bar = false;
     this.checkValue();
+    console.log('reset', this.props.bar);
   },
 
   checkValue() {
-
     if (this.props.bar === true) {
-      return this.finishValue();
-
-    } else if (this.props.bar === false) {
       this.incrementStatus(this.state.value);
       return window.requestAnimationFrame(this.checkValue);
+    } else if (this.props.bar === false) {
+      return this.finishValue();
     }
 
     return;
@@ -109,7 +104,7 @@ var dynamicProgressBar = React.createClass({
 
   completeValue() {
     this.setState({
-      status: 'complete'
+      complete: true
     });
   },
 
@@ -119,12 +114,12 @@ var dynamicProgressBar = React.createClass({
    * @return {Number}     Updated value of the progress bar
    */
   incrementStatus(val) {
-    if (val > 0.88) {
+    if (val > 0.74) {
       return;
     }
 
     // maths.  If someone has a better way to do this, please let me know!
-    var newValue = val + Math.cos(val * (Math.PI / 1.4)) * 0.001;
+    var newValue = val + Math.cos(val * (Math.PI / 1.6)) * 0.001;
 
     this.setState({
       value: newValue
@@ -138,7 +133,7 @@ var dynamicProgressBar = React.createClass({
   defaultStyle() {
     return {
       height: this.props.barHeight || 3,
-      background: this.props.barColor || '#28b5f6',
+      background: this.props.barColor || '#00b4ff',
       position: 'fixed',
       zIndex: 100,
       transition: 'transform 200ms linear',
@@ -213,8 +208,8 @@ var dynamicProgressBar = React.createClass({
   // only check the value if the status prop has changed
   componentWillReceiveProps(nextprops) {
 
-    if (this.props.bar === true && nextprops.bar === false) {
-      this.resetValue();
+    if (nextprops.bar === true && this.state.complete) {
+      setTimeout(this.resetValue, 400);
     } else if (typeof nextprops.bar === 'boolean') {
       this.checkValue();
     }
@@ -227,7 +222,7 @@ var dynamicProgressBar = React.createClass({
     this.style = this.setStyle(this.props.barStyle);
 
     // if status is false by default, run right away
-    if (typeof this.props.bar === 'boolean') {
+    if (this.props.bar === true) {
       this.checkValue();
     }
 
@@ -239,7 +234,7 @@ var dynamicProgressBar = React.createClass({
   render() {
 
     // hide bar after complete
-    if (this.state.status === 'complete') {
+    if (this.state.complete) {
       this.styleTransform();
     }
 

@@ -1,13 +1,13 @@
 'use strict';
 
 var React  = window.React || require('react'),
-    ProgressBar = require('../../react-dynamic-progress-bar'),
+    ProgressBar = require('../../react-state-progress-bar'),
     View;
 
 View = React.createClass({
   getInitialState: function() {
     return {
-      bar: null
+      bar: true
     };
   },
 
@@ -22,12 +22,13 @@ View = React.createClass({
     return (
       <div>
         <p>
-          <a onClick={this.handleClick} className="btn" href="#">Start Demo</a>
+          <code>&#123;this.state.bar === {this.state.bar.toString()}&#125;</code>
         </p>
         <p>&nbsp;</p>
         <p>
-          <code>&#123;this.state.bar === {this.state.bar ? this.state.bar.toString() : 'null'}&#125;</code>
+          <a onClick={this.handleClick} className="btn" href="#">Start Demo</a>
         </p>
+        <p>&nbsp;</p>
         <p>
           <code>&lt;ProgressBar bar=&#123;this.state.bar&#125; /&gt;</code>
         </p>

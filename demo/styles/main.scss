@@ -1,4 +1,4 @@
-$blue: #50AE75;
+$blue: #00b4ff;
 
 @import 'normalize';
 @import 'base';
@@ -24,7 +24,7 @@ body {
   h2 {
     font-size: 22px;
     font-weight: 200;
-    strong {
+    span {
       color: $blue;
     }
   }
