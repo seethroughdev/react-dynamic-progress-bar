@@ -208,6 +208,17 @@ var dynamicProgressBar = React.createClass({
   // only check the value if the status prop has changed
   componentWillReceiveProps(nextprops) {
 
+    // if (nextprops.bar && this.state.complete) {
+    //   this.resetValue();
+    //   console.log('already complete');
+    // }
+
+    // if (nextprops.bar && this.state.complete) {
+    //   this.resetValue();
+    //   console.log('starting over!');
+    // }
+
+
     if (nextprops.bar === true && this.state.complete) {
       setTimeout(this.resetValue, 400);
     } else if (typeof nextprops.bar === 'boolean') {

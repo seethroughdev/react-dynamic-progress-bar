@@ -7,3 +7,5 @@ React.render(
   <Demo />,
   document.getElementById('demo')
 );
+
+module.exports = '';
