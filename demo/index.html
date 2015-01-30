@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>***YOUR-TITLE-HERE***</title>
+    <title>React State Progress Bar</title>
 
     <!-- Styles -->
     <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
@@ -12,30 +12,30 @@
     <link rel="stylesheet" href="css/main.css">
 
     <!-- Canonical Meta -->
-    <link rel="canonical" href="**YOUR-URL-HERE***">
+    <link rel="canonical" href="http://seethroughtrees.github.io/react-dynamic-progress-bar/">
 
     <!-- Viewport Meta-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- SEO Meta -->
-    <meta name="description" content="***YOUR-CONTENT-HERE-***">
-    <meta name="keywords" content="***YOUR-CONTENT-HERE-***">
+    <meta name="description" content="Add a loading timer to your ajax calls, page transitions or anything you else you can think of.">
+    <meta name="keywords" content="reactjs, component, ajax, loading timer, open-source">
     <meta name="robots" content="INDEX,FOLLOW">
 
     <!-- Favicons -->
     <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
     <link rel="apple-touch-icon" href="/apple-touch-icon-precomposed.png">
-    <meta name="apple-mobile-web-app-title" content="***YOUR-SITE'S-NAME-HERE-***">
+    <meta name="apple-mobile-web-app-title" content="React State Progress Bar">
 
     <!-- Facebook -->
-    <meta property="og:title" content="***YOUR-TITLE-HERE-***">
-    <meta property="og:site_name" content="***YOUR-SITE'S-NAME-HERE-***">
-    <meta property=" og:url" content="***YOUR-URL-HERE-***">
-    <meta property="og:description" content="***YOUR-CONTENT-HERE-***">
+    <meta property="og:title" content="React State Progress Bar">
+    <meta property="og:site_name" content="React State Progress Bar">
+    <meta property=" og:url" content="http://seethroughtrees.github.io/react-dynamic-progress-bar/">
+    <meta property="og:description" content="Add a loading timer to your ajax calls, page transitions or anything you else you can think of.">
 
     <!-- Windows 8 Pin app to start screen -->
-    <meta name="msapplication-TileColor" content="****BRAND-COLOR-HERE***">
-    <meta name="msapplication-TileImage" content="***YOUR-URL-HERE-***/apple-touch-icon-precomposed.png">
+    <meta name="msapplication-TileColor" content="#50AE75">
+    <meta name="msapplication-TileImage" content="http://seethroughtrees.github.io/react-dynamic-progress-bar/apple-touch-icon-precomposed.png">
 
 </head>
 
@@ -64,18 +64,13 @@
                 <main class="hero">
                     <!-- <h2>Demo</h2> -->
                     <h2>Add a loading timer to your <strong>ajax calls</strong>, <strong>page transitions</strong> or anything you else you can think of.</h2>
-                    <p><a class="btn" href="#">Start Demo</a>
-                    </p>
-                    <p>&nbsp;</p>
-                    <p><code>{this.state.bar === false}</code>
-                    </p>
-                    <p><code>&lt;ProgressBar bar={this.state.bar} /&gt;</code>
-                    </p>
+                    <div id="demo"></div>
                 </main>
             </section>
 
             <section class="block container">
                 <h3>Start and finish a loading bar without knowing the actual value.  It just works.</h3>
+                <div id="demo2"></div>
                 <p>Most progress bars require you to input a value so the loading bar can calculate the width. But with ajax calls and other things, we don't always know how long it's going to take.</p>
                 <p>React State Progress Bar only requires a boolean state, either you start the bar, and its active. Or you cancel the bar and it finishes up. bar = true, or bar = false.</p>
             </section>
@@ -142,6 +137,8 @@
     </div>
     <!--/.site-->
 
+
+    <script src="http://fb.me/react-0.12.2.min.js"></script>
     <script src="js/bundle.js"></script>
 
 </body>

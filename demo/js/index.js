@@ -1,3 +1,9 @@
 'use strict';
 
-module.exports = console.log('hayo');
+var React = window.React || require('react'),
+    Demo = require('./demo.jsx');
+
+React.render(
+  <Demo />,
+  document.getElementById('demo')
+);

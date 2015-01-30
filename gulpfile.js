@@ -77,6 +77,7 @@ var mainBundle = watchify(browserify({
   }, watchify.args));
 
 mainBundle.transform(reactify);
+mainBundle.external('react');
 mainBundle.on('update', function() {
   return bundle(mainBundle, 'bundle.js');
 });
@@ -105,7 +106,7 @@ function bundle(src, filename) {
 gulp.task('build', function() {
   return gulp.src('./src/react-dynamic-progress-bar.js')
     .pipe(to5({
-      modules: 'umd'
+      modules: 'common'
     }))
     .on('error', handleError)
     .pipe($.rename('react-dynamic-progress-bar.js'))

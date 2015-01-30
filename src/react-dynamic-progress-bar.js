@@ -11,7 +11,7 @@
 
 'use strict';
 
-import React from 'react/addons';
+var React = window.React || require('react');
 
 /*======================================================
 =            1. requestAnimationFrame polyfill         =
@@ -145,7 +145,9 @@ var dynamicProgressBar = React.createClass({
       MozTransition: '-moz-transform 200ms linear',
       WebkitTransition: '-webkit-transform 200ms linear',
       MsTransition: '-ms-transform 200ms linear',
-      OTransition: 'o-transform 200ms linear'
+      OTransition: 'o-transform 200ms linear',
+      top: 0,
+      left: 0
     };
   },
 
@@ -164,6 +166,11 @@ var dynamicProgressBar = React.createClass({
       for(key in styleProps) {
         style[key] = styleProps[key];
       }
+    }
+
+    if (this.props.barPosition === 'bottom') {
+      delete style.top;
+      style.bottom = 0;
     }
 
     return style;
