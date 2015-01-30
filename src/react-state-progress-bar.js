@@ -52,6 +52,11 @@ if (!Date.now)
 var dynamicProgressBar = React.createClass({
 
 
+  propTypes: {
+    bar: RP.array,
+    barColor: RP.array
+  },
+
   /*==========  INIT  ==========*/
 
   resetStateValues: {
@@ -63,17 +68,12 @@ var dynamicProgressBar = React.createClass({
     return this.resetStateValues;
   },
 
-  propTypes: {
-    basssr: RP.bool.isRequired
-  },
-
   /*==========  Bar State  ==========*/
 
   resetValue() {
     this.setState(this.resetStateValues);
     this.styleTransform(true);
     this.checkValue();
-    console.log('reset', this.props.bar);
   },
 
   checkValue() {
