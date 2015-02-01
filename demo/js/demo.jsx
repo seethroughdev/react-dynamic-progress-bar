@@ -7,7 +7,7 @@ var React  = window.React || require('react'),
 View = React.createClass({
   getInitialState: function() {
     return {
-      bar: true
+      bar: false
     };
   },
 
@@ -19,12 +19,12 @@ View = React.createClass({
   },
 
   componentDidMount: function() {
-    var _this = this;
-    setTimeout(function() {
-      _this.setState({
-        bar: false
-      })
-    }, 5000);
+    // var _this = this;
+    // setTimeout(function() {
+    //   _this.setState({
+    //     bar: false
+    //   })
+    // }, 5000);
   },
 
   render: function() {

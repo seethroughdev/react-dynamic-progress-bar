@@ -77,7 +77,7 @@ var mainBundle = watchify(browserify({
   }, watchify.args));
 
 mainBundle.transform(reactify);
-mainBundle.external('react');
+// mainBundle.external('react');
 mainBundle.on('update', function() {
   return bundle(mainBundle, 'bundle.js');
 });

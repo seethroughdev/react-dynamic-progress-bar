@@ -11,8 +11,11 @@
 
 "use strict";
 
-var React = window.React || require("react"),
-    RP = React.PropTypes;
+var _interopRequire = function (obj) { return obj && obj.__esModule ? obj["default"] : obj; };
+
+var React = _interopRequire(require("react"));
+
+var RP = React.PropTypes;
 
 /*======================================================
 =            1. requestAnimationFrame polyfill         =
@@ -52,10 +55,11 @@ var dynamicProgressBar = React.createClass({
   displayName: "dynamicProgressBar",
 
 
-
   propTypes: {
-    bar: RP.array,
-    barColor: RP.array
+    bar: RP.bool.isRequired, // boolean to toggle bar
+    barColor: RP.string, // override bar color
+    barValue: RP.number, // override bar value
+    barStyle: RP.object // override bar style
   },
 
   /*==========  INIT  ==========*/
@@ -71,20 +75,31 @@ var dynamicProgressBar = React.createClass({
 
   /*==========  Bar State  ==========*/
 
-  resetValue: function resetValue() {
+
+  /**
+   * Reset all params for bar
+   * @param  {boolean} bar Status of bar (should always be true)
+   */
+  resetValue: function resetValue(bar) {
     this.setState(this.resetStateValues);
     this.styleTransform(true);
-    this.checkValue();
+    this.checkValue(bar);
   },
 
+
+  /**
+   * Recursive loop to check status of bar and increment
+   * @param  {Boolean} bar Status of bar
+   * @return {Dynamic}     Returns recursive checkValue or finishValue method
+   */
   checkValue: function checkValue() {
-    if (this.props.bar === true) {
+    var bar = arguments[0] === undefined ? this.props.bar : arguments[0];
+    if (bar) {
       this.incrementStatus(this.state.value);
       return window.requestAnimationFrame(this.checkValue);
-    } else if (this.props.bar === false) {
+    } else if (!bar) {
       return this.finishValue();
     }
-
     return;
   },
 
@@ -131,6 +146,10 @@ var dynamicProgressBar = React.createClass({
 
   /*==========  CSS  ==========*/
 
+  /**
+   * Get default style options
+   * @return {Object} Default style object
+   */
   defaultStyle: function defaultStyle() {
     return {
       height: this.props.barHeight || 3,
@@ -199,31 +218,22 @@ var dynamicProgressBar = React.createClass({
 
   /*==========  LIFECYCLE  ==========*/
 
-  // only check the value if the status prop has changed
+  // only check the value if the bar prop has changed
   componentWillReceiveProps: function componentWillReceiveProps(nextprops) {
-    // if (nextprops.bar && this.state.complete) {
-    //   this.resetValue();
-    //   console.log('already complete');
-    // }
-
-    // if (nextprops.bar && this.state.complete) {
-    //   this.resetValue();
-    //   console.log('starting over!');
-    // }
-
-
-    if (nextprops.bar === true && this.state.complete) {
-      setTimeout(this.resetValue, 400);
-    } else if (typeof nextprops.bar === "boolean") {
-      this.checkValue();
+    var bar = nextprops.bar;
+    if (bar) {
+      this.resetValue(bar);
+    } else if (typeof bar === "boolean") {
+      this.checkValue(bar);
     }
   },
 
+  // on mount, merge styles, and start bar if true
   componentWillMount: function componentWillMount() {
     // set style on mount so its only done once.
     this.style = this.setStyle(this.props.barStyle);
 
-    // if status is false by default, run right away
+    // if status is true by default, run right away
     if (this.props.bar === true) {
       this.checkValue();
     }
