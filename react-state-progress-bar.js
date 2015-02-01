@@ -59,7 +59,11 @@ var dynamicProgressBar = React.createClass({
     bar: RP.bool.isRequired, // boolean to toggle bar
     barColor: RP.string, // override bar color
     barValue: RP.number, // override bar value
-    barStyle: RP.object // override bar style
+    barStyle: RP.object, // override bar style
+    barHeight: RP.string, // override bar height
+    barClass: RP.string, // override bar Class
+    barId: RP.string, // override bar ID
+    barCallback: RP.func // add callback to onComplete
   },
 
   /*==========  INIT  ==========*/
@@ -82,7 +86,7 @@ var dynamicProgressBar = React.createClass({
    */
   resetValue: function resetValue(bar) {
     this.setState(this.resetStateValues);
-    this.styleTransform(true);
+    this.style = this.styleTransform(true);
     this.checkValue(bar);
   },
 
@@ -112,7 +116,7 @@ var dynamicProgressBar = React.createClass({
     }
 
     this.setState({
-      value: val + val * 0.02
+      value: val + val * 0.03
     });
 
     window.requestAnimationFrame(this.finishValue);
@@ -122,6 +126,11 @@ var dynamicProgressBar = React.createClass({
     this.setState({
       complete: true
     });
+
+    // call callback, if provided
+    if (typeof this.props.barCallback === "function") {
+      this.props.barCallback();
+    }
   },
 
   /**
@@ -243,18 +252,15 @@ var dynamicProgressBar = React.createClass({
   /*==========  RENDER  ==========*/
 
   render: function render() {
-    // hide bar after complete
-    if (this.state.complete) {
-      this.styleTransform();
-    }
+    // if state.complete, add transform
+    var style = !this.state.complete ? this.style : this.styleTransform();
 
-    var style = this.style;
     style.width = this.props.barValue || this.state.value * 100 + "%";
 
     return React.createElement("div", {
-      id: "progressBar",
-      style: style,
-      "data-bar-value": this.state.value
+      id: this.props.barId || "progressBar",
+      className: this.props.barClass,
+      style: style
     });
   }
 });

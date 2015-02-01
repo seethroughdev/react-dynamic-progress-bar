@@ -7,8 +7,7 @@ var React  = window.React || require('react'),
 View = React.createClass({
   getInitialState: function() {
     return {
-      bar: true,
-      ready: false
+      bar: false
     };
   },
 
@@ -20,13 +19,6 @@ View = React.createClass({
   },
 
   componentDidMount: function() {
-    var _this = this;
-    setTimeout(function() {
-      _this.setState({
-        bar: false,
-        ready: true
-      });
-    }, 5000);
   },
 
   onBarComplete: function() {
@@ -38,17 +30,15 @@ View = React.createClass({
     return (
       <div>
         <p>
-          <a onClick={this.handleClick} className="btn" href="#">Toggle Bar</a>
-        </p>
-        <p>&nbsp;</p>
-        <p>
-          <code>&#123;this.state.bar === {this.state.bar.toString()}&#125;</code>
-        </p>
-        <p>
-          <code>&lt;ProgressBar bar=&#123;this.state.bar&#125; /&gt;</code>
+          <a onClick={this.handleClick} className="btn" href="#">Toggle Bar 2</a>;
         </p>
         <ProgressBar
            bar={this.state.bar}
+           barColor='#990000'
+           barHeight='10'
+           barId='myNewBarId'
+           barClass='myNewBarClass'
+           barCallback={this.onBarComplete}
         />
       </div>
     );
