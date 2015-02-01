@@ -70,7 +70,6 @@
 
             <section class="block container">
                 <p>Start and finish a loading bar without knowing the actual value.  It just works.</p>
-                <div id="demo2"></div>
                 <p>Most progress bars require you to input a value so the loading bar can calculate the width. But with ajax calls and other things, we don't always know how long it's going to take.</p>
                 <p>React State Progress Bar only requires a boolean state, either you start the bar, and its active. Or you cancel the bar and it finishes up. bar = true, or bar = false.</p>
             </section>
@@ -85,7 +84,7 @@
                 <h4>Bower</h4>
                 <code>bower install react-state-pogress-bar -S</code>
                 <h4>Browser/Global</h4>
-                <a href="#" class="btn">Download</a>
+                <code>https://seethroughtrees.github.io/react-state-progress-bar/react-state-progress-bar.js</code>
             </section>
             <hr>
             <section class="block container">
@@ -103,6 +102,8 @@
                     )
                   }
                 </code>
+
+                <div id="demo2"></div>
 
                 <p>If the bar prop is not filled out, the component will consider it null and wait to start the bar until you change it to true. Afterwards, change the props to false, and the bar will finish up.
                 </p>
