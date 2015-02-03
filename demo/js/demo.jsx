@@ -26,7 +26,7 @@ View = React.createClass({
         bar: false,
         ready: true
       });
-    }, 5000);
+    }, 3500);
   },
 
   onBarComplete: function() {

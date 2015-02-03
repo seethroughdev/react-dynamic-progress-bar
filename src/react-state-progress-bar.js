@@ -13,7 +13,8 @@
 
 import React from 'react';
 
-var RP = React.PropTypes;
+var RP = React.PropTypes,
+    CONFIG;
 
 /*======================================================
 =            1. requestAnimationFrame polyfill         =
@@ -21,8 +22,9 @@ var RP = React.PropTypes;
 
 // Read about it here: https://github.com/darius/requestAnimationFrame/blob/master/requestAnimationFrame.js
 
-if (!Date.now)
-    Date.now = function() { return new Date().getTime(); };
+if (!Date.now) {
+  Date.now = function() { return new Date().getTime(); };
+}
 
 (function() {
 
@@ -46,9 +48,21 @@ if (!Date.now)
     }
 }());
 
+
+
 /*=======================================
 =            2. React Component         =
 =======================================*/
+
+CONFIG = {
+  stallBarAmt: 0.74,
+  defaultBarHeight: 3,
+  defaultBarColor: '#00b4ff',
+  defaultBarId: 'progressBar',
+  incrementAlgorithm: function(val) {
+    return val + Math.cos(val * (Math.PI / 1.6)) * 0.001;
+  }
+};
 
 var dynamicProgressBar = React.createClass({
 
@@ -106,16 +120,15 @@ var dynamicProgressBar = React.createClass({
   finishValue() {
     var val = this.state.value;
 
-      if (val >= 1) {
-        setTimeout(this.completeValue, 750);
-        return;
-      }
+    if (val >= 1) {
+      return setTimeout(this.completeValue, 750);
+    }
 
-      this.setState({
-        value: val + (val * 0.03)
-      });
+    this.setState({
+      value: val + (val * 0.03)
+    });
 
-    window.requestAnimationFrame(this.finishValue);
+    return window.requestAnimationFrame(this.finishValue);
   },
 
   completeValue() {
@@ -135,12 +148,12 @@ var dynamicProgressBar = React.createClass({
    * @return {Number}     Updated value of the progress bar
    */
   incrementStatus(val) {
-    if (val > 0.74) {
+    if (val > CONFIG.stallBarAmt) {
       return;
     }
 
     // maths.  If someone has a better way to do this, please let me know!
-    var newValue = val + Math.cos(val * (Math.PI / 1.6)) * 0.001;
+    var newValue = CONFIG.incrementAlgorithm(val);
 
     this.setState({
       value: newValue
@@ -157,8 +170,8 @@ var dynamicProgressBar = React.createClass({
    */
   defaultStyle() {
     return {
-      height: this.props.barHeight || 3,
-      background: this.props.barColor || '#00b4ff',
+      height: this.props.barHeight || CONFIG.defaultBarHeight,
+      background: this.props.barColor || CONFIG.defaultBarColor,
       position: 'fixed',
       zIndex: 100,
       transition: 'transform 200ms linear',
@@ -262,7 +275,7 @@ var dynamicProgressBar = React.createClass({
 
     return (
       React.createElement('div', {
-          id: this.props.barId || 'progressBar',
+          id: this.props.barId || CONFIG.defaultBarId,
           className: this.props.barClass,
           style: style
         }
