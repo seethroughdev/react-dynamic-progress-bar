@@ -80,11 +80,11 @@
                 <h3>Download</h3>
                 <p>React State Progress Bar is <a href- "#">browserify</a> compatible, and uses <a href- "#">UMD</a>. So its available for <a href- "#">commonJS</a>, <a href- "#">AMD</a> or in the browser. <a href- "#">SystemJS</a> version will be coming soon.</p>
                 <h4>NPM</h4>
-                <code>npm install react-state-progress-bar -D</code>
+                <pre><code>npm install react-state-progress-bar -D</code></pre>
                 <h4>Bower</h4>
-                <code>bower install react-state-pogress-bar -S</code>
+                <pre><code>bower install react-state-pogress-bar -S</code></pre>
                 <h4>Browser/Global</h4>
-                <code>https://seethroughtrees.github.io/react-state-progress-bar/react-state-progress-bar.js</code>
+                <pre><code>https://seethroughtrees.github.io/react-state-progress-bar/react-state-progress-bar.js</code></pre>
             </section>
             <hr>
             <section class="block container">
@@ -93,17 +93,18 @@
 
                 <p>With NPM:</p>
 
-                <code>
-                  var ProgressBar = require('react-state-progress-bar');
+                <pre><code>
+// require the file
+var ProgressBar = require('react-state-progress-bar');
 
-                  render: function() {
-                    return (
-                      <ProgressBar bar={this.state.bar} />
-                    )
-                  }
-                </code>
+// inside your React component
+render: function() {
+    return (
+        &lt;ProgressBar bar={this.state.bar} />
+    )
+}
+                </code></pre>
 
-                <div id="demo2"></div>
 
                 <p>If the bar prop is not filled out, the component will consider it null and wait to start the bar until you change it to true. Afterwards, change the props to false, and the bar will finish up.
                 </p>
@@ -112,9 +113,49 @@
 
             <section class="block container">
               <h3>Options</h3>
-              <p></p>
+              <p>There are several props you can pass to the progress bar, only
+              <strong>bar</strong> is required.
+              </p>
+              <pre><code>
+&lt;ProgressBar
+    bar=&#123;this.state.bar&#125;
+    barColor='#990000'
+    barHeight='10'
+    barId='myNewBarId'
+    barClass='myNewBarClass'
+    barCallback=&#123;this.onBarComplete&#125;
+/&gt;
+              </code></pre>
+              <ul>
+                  <li>
+                      <strong>bar</strong> (boolean) * required | pass a <em>true</em> or <em>false</em> value to bar to turn the bar on and off.
+                  </li>
+                  <li>
+                      <strong>barColor</strong> (string) | pass a color code for the bar. <em>#990000</em> or <em>rgba(0,0,0,1)</em>
+                  </li>
+                  <li>
+                      <strong>barHeight</strong> (string) | pass a number string in pixels for the height of the bar. <br/>
+                      <em>You only need to pass the number, right now, only px are supported.</em>
+                  </li>
+                  <li>
+                      <strong>barPosition</strong> (string) | pass the word 'bottom' here to position the bar across
+                      the bottom of the screen.  <br/>
+                      <em>Also note, you can override the entire position with the barStyle prop.</em>
+                  </li>
+                  <li>
+                      <strong>barStyle</strong> (object) | pass a style object in and it will be merged with the existing styles. <br/>
+                      <em>Also note, this is a shallow merge, and will replace all existing keys with your own.</em>
+                  </li>
+                  <li>
+                      <strong>barValue</strong> (string) |
+                  </li>
+                  <li>
+                      <strong>barCallback</strong> (function) |
+                  </li>
+              </ul>
             </section>
 
+            <div id="demo2"></div>
 
             <section class="block container">
                 <p><em>Skyline is intended for IE9+ with optional legacy support in the works</em>
@@ -138,7 +179,9 @@
     </div>
     <!--/.site-->
 
-    <script src="js/bundle.js"></script>
+    <!-- <script src="http://localhost:8080/webpack-dev-server.js"></script> -->
+    <script src="http://fb.me/react-0.12.2.min.js"></script>
+    <script src="bundle.js"></script>
 
 </body>
 

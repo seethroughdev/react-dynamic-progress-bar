@@ -14,4 +14,4 @@ React.render(
   document.getElementById('demo2')
 );
 
-module.exports = '';
+module.exports = {};
