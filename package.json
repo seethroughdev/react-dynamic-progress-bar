@@ -65,6 +65,7 @@
     "highlight-redux": "^1.0.1",
     "highlight.js": "^8.4.0",
     "html-loader": "^0.2.3",
+    "html-webpack-plugin": "^1.1.0",
     "jest-cli": "^0.2.2",
     "jsx-loader": "^0.12.2",
     "postcss-loader": "^0.3.0",

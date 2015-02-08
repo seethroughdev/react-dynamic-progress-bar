@@ -1,22 +1,21 @@
 'use strict';
 
-var webpack       = require('webpack'),
-    path          = require('path'),
+var path          = require('path'),
     autoprefixer  = require('autoprefixer-core'),
     mqpacker = require('css-mqpacker'),
-    csswring = require('csswring'),
-    commonsPlugin = new webpack.optimize.CommonsChunkPlugin('common.js', 2);
+    csswring = require('csswring');
 
 module.exports = {
   cache: true,
   context: path.join(__dirname, 'demo'),
   entry: {
     app: ['webpack/hot/dev-server', './js/index.jsx'],
+    styles: './styles.js',
     vendor: './vendor.js'
   },
   output: {
     path: path.join(__dirname, process.env.NODE_ENV === 'production' ? './dist' : './build'),
-    filename: '[name].bundle.js',
+    filename: '[name].js',
     publicPath: '/build/'
   },
   module: {
@@ -38,5 +37,5 @@ module.exports = {
   resolve: {
     extensions: ['', '.js', '.jsx', '.scss']
   },
-  plugins: [ commonsPlugin ]
+  plugins: [ ]
 };
