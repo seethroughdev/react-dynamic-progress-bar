@@ -41,7 +41,7 @@
   },
   "homepage": "https://github.com/seethroughtrees/react-state-progress-bar",
   "devDependencies": {
-    "autoprefixer-core": "^5.1.4",
+    "autoprefixer-core": "^5.1.5",
     "autoprefixer-loader": "^1.1.0",
     "css-loader": "^0.9.1",
     "css-mqpacker": "^3.0.1",
